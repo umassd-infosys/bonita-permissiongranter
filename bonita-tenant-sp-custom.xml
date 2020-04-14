@@ -1,0 +1,25 @@
+<!-- add this content to 
+bonita-tenant-sp-custom.xml
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	      xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	
+	    <bean id="securityGranter" class="edu.umassd.bonita.SecurityGranter">
+	    	<constructor-arg name="tenantId" value="${tenantId}" /> 
+	    </bean>
+
+	
+	    <bean id="eventHandlers" class="org.springframework.beans.factory.config.MapFactoryBean">
+	        <property name="targetMapClass">
+	            <value>java.util.HashMap</value>
+	        </property>
+	        <property name="sourceMap">
+	            <map>
+	                <entry key="ACTIVITYINSTANCE_STATE_UPDATED" value-ref="securityGranter"/>
+	                <entry key="HUMAN_TASK_INSTANCE_ASSIGNEE_UPDATED" value-ref="securityGranter"/>
+	            </map>
+	        </property>
+	    </bean>
+	
+	</beans>

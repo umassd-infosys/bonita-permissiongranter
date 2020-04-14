@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>edu.umassd.bonita</groupId>
+  <artifactId>bonita-securitygranter</artifactId>
+  <version>1.0.0</version>
+  <name>UMassD Bonita Security Granter</name>
+
+
+  <properties>
+        <bonita.version>7.10.0</bonita.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+<dependencies>
+        <dependency>
+            <groupId>org.bonitasoft.engine</groupId>
+            <artifactId>bonita-server</artifactId>
+            <version>${bonita.version}</version>
+        </dependency>          
+    </dependencies>
+    	
+   <build>
+		<!-- ******************** Copy JAR files under lib **************** -->
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>3.1.1</version>
+				<executions>
+					<execution>
+						<id>copy-dependencies</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${basedir}/lib</outputDirectory>
+							<overWriteReleases>true</overWriteReleases>
+							<overWriteSnapshots>true</overWriteSnapshots>
+							<excludeTransitive>true</excludeTransitive>
+							<excludeScope>provided</excludeScope>
+						</configuration>
+					</execution>
+
+					<execution>
+						<id>copy-Jar</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${basedir}/lib</outputDirectory>
+							<artifactItems>
+								<artifactItem>
+									<groupId>${project.groupId}</groupId>
+									<artifactId>${project.artifactId}</artifactId>
+									<version>${project.version}</version>
+									<overWrite>true</overWrite>
+								</artifactItem>
+							</artifactItems>
+							<resources>
+								<resource>
+									<directory>target</directory>
+									<includes>
+										<include>*.jar</include>
+									</includes>
+								</resource>
+							</resources>
+
+						</configuration>
+					</execution>
+
+				</executions>
+			</plugin>
+
+			<!-- ******************** Generate the Resource (ZIP FILE) -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				 <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
