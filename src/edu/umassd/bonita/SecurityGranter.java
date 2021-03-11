@@ -36,7 +36,7 @@ import org.bonitasoft.engine.core.process.instance.api.exceptions.SActivityReadE
 import org.bonitasoft.engine.events.model.SEvent;
 import org.bonitasoft.engine.events.model.SHandler;
 import org.bonitasoft.engine.events.model.SHandlerExecutionException;
-import org.bonitasoft.engine.execution.archive.ProcessArchiver;
+import edu.umassd.bonita.ProcessArchiver;
 import org.bonitasoft.engine.SArchivingException;
 import org.bonitasoft.engine.archive.ArchiveService;
 import org.bonitasoft.engine.core.process.instance.model.SHumanTaskInstance;
