@@ -23,6 +23,8 @@
     </dependencies>
     	
    <build>
+        <sourceDirectory>src</sourceDirectory>
+        <testSourceDirectory>test</testSourceDirectory>
 		<!-- ******************** Copy JAR files under lib **************** -->
 		<plugins>
 			<plugin>
